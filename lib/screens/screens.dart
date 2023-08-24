@@ -6,6 +6,5 @@ export '/screens/home_screen.dart';
 export '/screens/section_template.dart';
 export '/screens/videos_template.dart';
 export '/screens/welcome_test.dart';
-export '/videos.dart';
 export '/screens/final_score.dart';
 export '/screens/test_voc_1.dart';
