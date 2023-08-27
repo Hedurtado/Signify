@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:section/screens/screens.dart';
 
 import '/theme/app_theme.dart';
 
@@ -62,7 +63,13 @@ class CardScreen extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'abecedario');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => const Template(
+                                  title: 'Abecedario',
+                                  imageAsset: 'assets/abc.png',
+                                )));
                   },
                   child: const CustomCardType2(
                     backgroundcolor: AppTheme.green,
@@ -72,7 +79,13 @@ class CardScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'listview2');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => const Template(
+                                  title: 'Numeros',
+                                  imageAsset: 'assets/home_img/numeros.png',
+                                )));
                   },
                   child: const CustomCardType2(
                     imageUrl: 'assets/home_img/numeros.png',
@@ -82,7 +95,13 @@ class CardScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'listview2');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => const Template(
+                                  title: 'Dias',
+                                  imageAsset: 'assets/home_img/dias.png',
+                                )));
                   },
                   child: const CustomCardType2(
                     imageUrl: 'assets/home_img/dias.png',
@@ -92,7 +111,13 @@ class CardScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'listview2');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => const Template(
+                                  title: 'Meses',
+                                  imageAsset: 'assets/home_img/meses.png',
+                                )));
                   },
                   child: const CustomCardType2(
                     imageUrl: 'assets/home_img/meses.png',
@@ -102,7 +127,13 @@ class CardScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'listview2');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => const Template(
+                                  title: 'Saludos',
+                                  imageAsset: 'assets/home_img/saludos.png',
+                                )));
                   },
                   child: const CustomCardType2(
                     imageUrl: 'assets/home_img/saludos.png',
@@ -112,7 +143,13 @@ class CardScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'listview2');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => const Template(
+                                  title: 'Colores',
+                                  imageAsset: 'assets/home_img/colores.png',
+                                )));
                   },
                   child: const CustomCardType2(
                     imageUrl: 'assets/home_img/colores.png',

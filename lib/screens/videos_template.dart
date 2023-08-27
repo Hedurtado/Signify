@@ -4,7 +4,11 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerTemplate extends StatefulWidget {
-  const VideoPlayerTemplate({super.key});
+  final String name;
+  const VideoPlayerTemplate({
+    required this.name,
+    Key? key,
+  }) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -29,7 +33,7 @@ class _VideosState extends State<VideoPlayerTemplate> {
 
   Future<void> _getVideosFromFirestore() async {
     CollectionReference collection =
-        FirebaseFirestore.instance.collection('Videos');
+        FirebaseFirestore.instance.collection(widget.name);
     QuerySnapshot querySnapshot = await collection.get();
 
     List<Map<String, String>> fetchvideos = [];
