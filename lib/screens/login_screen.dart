@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:section/screens/screens.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,9 +29,9 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               buildSmallLogo(context),
-              buildLoginEmail(context),
-              buildLoginPassword(context),
-              buildLogin(context),
+              buildLoginEmail(context, emailController),
+              buildLoginPassword(context, passwordController),
+              buildLogin(context, emailController, passwordController),
               buildOtherOption(context),
               buildOtherLogins(context),
             ],
@@ -26,8 +42,21 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-Widget buildLoginEmail(BuildContext context) {
-  final TextEditingController usernameController = TextEditingController();
+Widget buildSmallLogo(BuildContext context) {
+  return Container(
+    margin: EdgeInsets.only(
+      top: MediaQuery.of(context).size.height * 0.08,
+    ),
+    child: Image.asset(
+      'assets/icons/launcher.png',
+      width: 100,
+      height: 100,
+    ),
+  );
+}
+
+Widget buildLoginEmail(
+    BuildContext context, TextEditingController emailController) {
   double screenWidth = MediaQuery.of(context).size.width;
   double scaleFactor = screenWidth / 375.0;
   return Container(
@@ -36,7 +65,7 @@ Widget buildLoginEmail(BuildContext context) {
       ),
       width: 300 * scaleFactor,
       child: TextFormField(
-          controller: usernameController,
+          controller: emailController,
           decoration: const InputDecoration(
               labelText: 'Usuario o Correo',
               border: OutlineInputBorder(
@@ -46,12 +75,12 @@ Widget buildLoginEmail(BuildContext context) {
           keyboardType: TextInputType.emailAddress,
           style: GoogleFonts.jua(
             fontSize: 20,
-            color: const Color(0x00000000),
+            color: const Color.fromARGB(255, 0, 0, 0),
           )));
 }
 
-Widget buildLoginPassword(BuildContext context) {
-  final TextEditingController passwordController = TextEditingController();
+Widget buildLoginPassword(
+    BuildContext context, TextEditingController passwordController) {
   double screenWidth = MediaQuery.of(context).size.width;
   double scaleFactor = screenWidth / 375.0;
   return Container(
@@ -71,11 +100,15 @@ Widget buildLoginPassword(BuildContext context) {
           obscureText: true,
           style: GoogleFonts.jua(
             fontSize: 20,
-            color: const Color(0x00000000),
+            color: const Color.fromARGB(255, 0, 0, 0),
           )));
 }
 
-Widget buildLogin(BuildContext context) {
+Widget buildLogin(
+  BuildContext context,
+  TextEditingController emailController,
+  TextEditingController passwordController,
+) {
   double screenWidth = MediaQuery.of(context).size.width;
   double scaleFactor = screenWidth / 375.0;
   return Container(
@@ -83,8 +116,17 @@ Widget buildLogin(BuildContext context) {
       top: MediaQuery.of(context).size.height * 0.2,
     ),
     child: ElevatedButton(
-      onPressed: () {
-        Navigator.pushNamed(context, 'introduction');
+      onPressed: () async {
+        try {
+          UserCredential userCredential =
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: emailController.text,
+            password: passwordController.text,
+          );
+          Navigator.pushNamed(context, 'introduction');
+        } catch (e) {
+          print(e);
+        }
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF7740AD),

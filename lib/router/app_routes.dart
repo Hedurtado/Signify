@@ -7,7 +7,7 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> routes = {
     'firstpage': (BuildContext context) => const HomePage(),
     'login': (BuildContext context) => const LoginPage(),
-    'register': (BuildContext context) => const RegisterPage(),
+    'register': (BuildContext context) => RegisterPage(),
     'introduction': (BuildContext context) => const IntroductionScreen(),
     'custom1': (BuildContext context) => const CustomScreen1(),
     'custom2': (BuildContext context) => const CustomScreen2(),
