@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import '/screens/screens.dart';
 
 class AppRoutes {
-  static const initialRoute = 'cardview';
+  static const initialRoute = 'firstpage';
 
   static Map<String, Widget Function(BuildContext)> routes = {
+    'firstpage': (BuildContext context) => const HomePage(),
+    'login': (BuildContext context) => const LoginPage(),
+    'register': (BuildContext context) => const RegisterPage(),
     'cardview': (BuildContext context) => const CardScreen(),
     'homeview': (BuildContext context) => const HomeScreen(),
     'welcometest': (BuildContext context) => const WelcomeTest(),

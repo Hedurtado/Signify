@@ -209,7 +209,7 @@ class _VideosState extends State<VideoPlayerTemplate> {
         bottom: MediaQuery.of(context).size.height * 0.02,
       ),
       child: Text(
-        "Esta seña representa la letra \n$videoName",
+        "Esta seña es \n$videoName",
         style: const TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.bold,

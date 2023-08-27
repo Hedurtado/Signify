@@ -8,3 +8,6 @@ export '/screens/videos_template.dart';
 export '/screens/welcome_test.dart';
 export '/screens/final_score.dart';
 export '/screens/test_voc_1.dart';
+export '/screens/main_page.dart';
+export '/screens/login_screen.dart';
+export '/screens/register_screen.dart';
