@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
+      title: 'Signify',
       // home: const CardScreen(),
       initialRoute: AppRoutes.initialRoute,
       routes: AppRoutes.routes,
       onUnknownRoute: (settings) => MaterialPageRoute(
-        builder: (context) => const CardScreen(),
+        builder: (context) => const HomePage(),
       ),
     );
   }

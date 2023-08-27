@@ -36,7 +36,8 @@ class CustomCardType2 extends StatelessWidget {
                       padding: const EdgeInsets.all(30),
                       child: FadeInImage(
                         image: AssetImage(imageUrl),
-                        placeholder: const AssetImage('assets/jar-loading.gif'),
+                        placeholder:
+                            const AssetImage('assets/images/jar-loading.gif'),
                         width: double.maxFinite,
                         height: 230,
                         fit: BoxFit.cover,
