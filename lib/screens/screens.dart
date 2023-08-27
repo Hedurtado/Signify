@@ -11,3 +11,8 @@ export '/screens/test_voc_1.dart';
 export '/screens/main_page.dart';
 export '/screens/login_screen.dart';
 export '/screens/register_screen.dart';
+export 'introduction_screen.dart';
+export 'custom_screen_1.dart';
+export 'custom_screen_2.dart';
+export 'custom_screen_3.dart';
+export 'welcome_page.dart';

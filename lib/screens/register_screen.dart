@@ -152,7 +152,7 @@ Widget buildRegister(BuildContext context) {
     ),
     child: ElevatedButton(
       onPressed: () {
-        Navigator.pushNamed(context, 'register');
+        Navigator.pushNamed(context, 'introduction');
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF7740AD),
