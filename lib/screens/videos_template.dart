@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:section/screens/screens.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerTemplate extends StatefulWidget {
@@ -131,6 +132,12 @@ class _VideosState extends State<VideoPlayerTemplate> {
   }
 
   Widget buildButtonOptions(BuildContext context) {
+    final String title;
+    if (widget.name == "Videos") {
+      title = 'Abecedario';
+    } else {
+      title = widget.name;
+    }
     return Container(
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.05,
@@ -145,7 +152,7 @@ class _VideosState extends State<VideoPlayerTemplate> {
             child: InkWell(
               onTap: moveToPrev,
               child: Image.asset(
-                'assets/double_left.png',
+                'assets/images/double_left.png',
                 width: 50,
                 height: 50,
               ),
@@ -158,11 +165,16 @@ class _VideosState extends State<VideoPlayerTemplate> {
             ),
             child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, 'abecedario');
+                Navigator.push(context, MaterialPageRoute(builder: ((context) {
+                  return Template(
+                      title: title,
+                      imageAsset: 'assets/home_img/${title.toLowerCase()}.png');
+                })));
                 _controller.pause();
+                _controller.dispose();
               },
               child: Image.asset(
-                'assets/home.png',
+                'assets/images/home.png',
                 width: 50,
                 height: 50,
               ),
@@ -175,7 +187,7 @@ class _VideosState extends State<VideoPlayerTemplate> {
             child: InkWell(
               onTap: moveToNext,
               child: Image.asset(
-                'assets/double_right.png',
+                'assets/images/double_right.png',
                 width: 50,
                 height: 50,
               ),
@@ -209,7 +221,7 @@ class _VideosState extends State<VideoPlayerTemplate> {
         bottom: MediaQuery.of(context).size.height * 0.02,
       ),
       child: Text(
-        "Esta seña es \n$videoName",
+        "Esta seña es de $videoName",
         style: const TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.bold,

@@ -68,7 +68,7 @@ class CardScreen extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (BuildContext context) => const Template(
                                   title: 'Abecedario',
-                                  imageAsset: 'assets/abc.png',
+                                  imageAsset: 'assets/images/Abecedario.png',
                                 )));
                   },
                   child: const CustomCardType2(
