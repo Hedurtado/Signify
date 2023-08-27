@@ -6,17 +6,19 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            buildSmallLogo(context),
-            buildUserName(context),
-            buildRealName(context),
-            buildEmail(context),
-            buildPassword(context),
-            buildRegister(context),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              buildSmallLogo(context),
+              buildUserName(context),
+              buildRealName(context),
+              buildEmail(context),
+              buildPassword(context),
+              buildRegister(context),
+            ],
+          ),
         ),
       ),
     );
@@ -26,7 +28,7 @@ class RegisterPage extends StatelessWidget {
 Widget buildSmallLogo(BuildContext context) {
   return Container(
     margin: EdgeInsets.only(
-      top: MediaQuery.of(context).size.height * 0.01,
+      top: MediaQuery.of(context).size.height * 0.08,
     ),
     child: Image.asset(
       'assets/icons/launcher.png',
