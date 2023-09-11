@@ -16,7 +16,7 @@ class WelcomePage extends StatelessWidget {
           buildText1(context),
           buidlText2(context),
           buildStartButton(
-              context, 'Empezar', const Color(0xFF7740AD), 'cardview'),
+              context, 'Empezar', const Color(0xFF7740AD), 'home_test'),
         ],
       ),
     ));

@@ -16,3 +16,5 @@ export 'custom_screen_1.dart';
 export 'custom_screen_2.dart';
 export 'custom_screen_3.dart';
 export 'welcome_page.dart';
+export 'home_test.dart';
+export '/screens/card_screen2.dart';
