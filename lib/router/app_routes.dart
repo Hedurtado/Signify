@@ -14,10 +14,12 @@ class AppRoutes {
     'custom3': (BuildContext context) => const CustomScreen3(),
     'welcomepage': (BuildContext context) => const WelcomePage(),
     'cardview': (BuildContext context) => const CardScreen(),
+    'cardview2': (BuildContext context) => const CardScreen2(),
     'homeview': (BuildContext context) => const HomeScreen(),
     'welcometest': (BuildContext context) => const WelcomeTest(),
     'test': (BuildContext context) => const TestVoc(),
     'settings': (BuildContext context) => const HomeScreen(),
     'finalscore': (BuildContext context) => const FinalScore(),
+    'home_test': (BuildContext context) => const MyHomePage(),
   };
 }

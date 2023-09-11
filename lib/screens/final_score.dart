@@ -180,7 +180,7 @@ class FinalScore extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         //TODO: Agregar que al darle continuar se vaya a la seccion y no a la homepage
-                        Navigator.pushNamed(context, 'cardview');
+                        Navigator.pushNamed(context, 'home_test');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(
