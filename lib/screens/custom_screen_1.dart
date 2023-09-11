@@ -39,7 +39,7 @@ Widget buildAge(BuildContext context) {
         keyboardType: TextInputType.number,
         style: GoogleFonts.istokWeb(
           fontSize: 20,
-          color: const Color(0x00000000),
+          color: const Color(0xFF000000),
         )),
   );
 }

@@ -24,7 +24,7 @@ class Template extends StatelessWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pushNamed(context, 'cardview');
+            Navigator.pushNamed(context, 'home_test');
           },
         ),
       ),
