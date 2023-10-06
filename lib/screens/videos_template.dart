@@ -136,7 +136,7 @@ class _VideosState extends State<VideoPlayerTemplate> {
     if (widget.name == "Videos") {
       title = 'Abecedario';
     } else {
-      title = widget.name;
+      title = widget.name.substring(0, widget.name.indexOf('_'));
     }
     return Container(
       margin: EdgeInsets.only(
@@ -167,8 +167,10 @@ class _VideosState extends State<VideoPlayerTemplate> {
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: ((context) {
                   return Template(
-                      title: title,
-                      imageAsset: 'assets/home_img/${title.toLowerCase()}.png');
+                    title: title,
+                    imageAsset: 'assets/home_img/${title.toLowerCase()}.png',
+                    language: 'none',
+                  );
                 })));
                 _controller.pause();
                 _controller.dispose();
@@ -199,13 +201,22 @@ class _VideosState extends State<VideoPlayerTemplate> {
   }
 
   Widget buildVideo(BuildContext context) {
+    final double videoWidth;
+    final double videoHeight;
+    if (widget.name.contains('lsec')) {
+      videoWidth = MediaQuery.of(context).size.width * 0.9;
+      videoHeight = MediaQuery.of(context).size.height * 0.5;
+    } else {
+      videoWidth = MediaQuery.of(context).size.width * 0.7;
+      videoHeight = MediaQuery.of(context).size.height * 0.5;
+    }
     return Container(
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.01,
         bottom: MediaQuery.of(context).size.height * 0.03,
       ),
-      width: MediaQuery.of(context).size.width * 0.7,
-      height: MediaQuery.of(context).size.height * 0.5,
+      width: videoWidth,
+      height: videoHeight,
       child: AspectRatio(
         aspectRatio: _controller.value.aspectRatio,
         child: VideoPlayer(_controller),

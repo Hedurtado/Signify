@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -164,6 +165,7 @@ Widget buildOtherOption(BuildContext context) {
 Widget buildOtherLogins(BuildContext context) {
   double screenWidth = MediaQuery.of(context).size.width;
   double scaleFactor = screenWidth / 375.0;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   return Container(
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.02,
@@ -178,7 +180,26 @@ Widget buildOtherLogins(BuildContext context) {
                   elevation: 0,
                   minimumSize: Size(60 * scaleFactor, 60 * scaleFactor),
                 ), // Tamaño escalado
-                onPressed: () {},
+                onPressed: () async {
+                  //TODO: Configurar bien el login de Google
+                  try {
+                    final GoogleSignInAccount? googleUser =
+                        await googleSignIn.signIn();
+                    final GoogleSignInAuthentication? googleAuth =
+                        await googleUser?.authentication;
+                    final AuthCredential credential =
+                        GoogleAuthProvider.credential(
+                      accessToken: googleAuth?.accessToken,
+                      idToken: googleAuth?.idToken,
+                    );
+                    final UserCredential userCredential = await FirebaseAuth
+                        .instance
+                        .signInWithCredential(credential);
+                    Navigator.pushNamed(context, 'introduction');
+                  } catch (e) {
+                    print(e);
+                  }
+                },
                 child: Image.asset('assets/images/google.png')),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
