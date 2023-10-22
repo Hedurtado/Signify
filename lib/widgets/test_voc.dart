@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:video_player/video_player.dart';
 
 class Voc1 extends StatefulWidget {
@@ -241,7 +240,7 @@ class _VideosStateTest extends State<Voc1> {
           ),
         ),
         const SizedBox(height: 10),
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.height * 0.57,
           child: Column(
             children: [

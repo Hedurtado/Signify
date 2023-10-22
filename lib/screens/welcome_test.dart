@@ -47,7 +47,7 @@ class WelcomeTest extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 60 * scaleFactor), // Espacio escalado
+                SizedBox(height: 40 * scaleFactor), // Espacio escalado
 
                 FractionallySizedBox(
                   widthFactor: 0.44,
@@ -91,7 +91,7 @@ class WelcomeTest extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 60 * scaleFactor), // Espacio escalado
+                SizedBox(height: 20 * scaleFactor), // Espacio escalado
 
                 ElevatedButton(
                   onPressed: () {
@@ -108,7 +108,32 @@ class WelcomeTest extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'EMPEZAR',
+                    'Reconoce el signo!',
+                    style: GoogleFonts.poppins(
+                      fontSize: 20 * scaleFactor, // Tamaño de fuente escalado
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 20 * scaleFactor),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'cameraUse');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFA3A42B),
+                    minimumSize: Size(
+                        200 * scaleFactor, 60 * scaleFactor), // Tamaño escalado
+
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          15 * scaleFactor), // Radio escalado
+                    ),
+                  ),
+                  child: Text(
+                    'Prueba tus gestos!',
                     style: GoogleFonts.poppins(
                       fontSize: 20 * scaleFactor, // Tamaño de fuente escalado
                       color: Colors.white,

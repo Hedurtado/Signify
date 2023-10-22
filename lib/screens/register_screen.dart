@@ -92,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
         keyboardType: TextInputType.text,
         style: GoogleFonts.jua(
           fontSize: 20,
-          color: Color.fromARGB(255, 0, 0, 0),
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
     );
@@ -120,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
         keyboardType: TextInputType.text,
         style: GoogleFonts.jua(
           fontSize: 20,
-          color: Color.fromARGB(255, 0, 0, 0),
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
     );
@@ -148,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
         keyboardType: TextInputType.emailAddress,
         style: GoogleFonts.jua(
           fontSize: 20,
-          color: Color.fromARGB(255, 0, 0, 0),
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
     );
@@ -176,7 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
         obscureText: true,
         style: GoogleFonts.jua(
           fontSize: 20,
-          color: Color.fromARGB(255, 0, 0, 0),
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
     );

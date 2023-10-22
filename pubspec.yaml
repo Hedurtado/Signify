@@ -44,12 +44,16 @@ dependencies:
   english_words: ^4.0.0
   cloud_firestore: ^4.8.5
   smooth_page_indicator: ^1.1.0
-  firebase_core: ^2.15.1
+  firebase_core: ^2.16.0
   flutter_cache_manager: ^3.3.1
   chewie: ^1.7.0
   firebase_auth: ^4.8.0
   country_flags: ^2.1.0
   lottie: ^2.6.0
+  firebase_ml_model_downloader: ^0.2.3+6
+  camera: ^0.9.7+1
+  tflite_flutter: ^0.10.2
+  permission_handler: ^11.0.0
 
 dev_dependencies:
   flutter_test:
