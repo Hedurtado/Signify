@@ -5,8 +5,8 @@ import '/theme/app_theme.dart';
 
 import '/widgets/widgets.dart';
 
-class CardScreen extends StatelessWidget {
-  const CardScreen({Key? key}) : super(key: key);
+class CardScreen2 extends StatelessWidget {
+  const CardScreen2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +69,12 @@ class CardScreen extends StatelessWidget {
                             builder: (BuildContext context) => const Template(
                                   title: 'Abecedario',
                                   imageAsset: 'assets/images/Abecedario.png',
-                                  language: 'american',
+                                  language: 'ecuadorian',
                                 )));
                   },
                   child: const CustomCardType2(
                     backgroundcolor: AppTheme.green,
-                    imageUrl: 'assets/home_img/abecedario.png',
+                    imageUrl: 'assets/images/Abecedario.png',
                     name: 'Abecedario',
                   ),
                 ),
@@ -86,7 +86,7 @@ class CardScreen extends StatelessWidget {
                             builder: (BuildContext context) => const Template(
                                   title: 'Numeros',
                                   imageAsset: 'assets/home_img/numeros.png',
-                                  language: 'american',
+                                  language: 'ecuadorian',
                                 )));
                   },
                   child: const CustomCardType2(
@@ -103,7 +103,7 @@ class CardScreen extends StatelessWidget {
                             builder: (BuildContext context) => const Template(
                                   title: 'Dias',
                                   imageAsset: 'assets/home_img/dias.png',
-                                  language: 'american',
+                                  language: 'ecuadorian',
                                 )));
                   },
                   child: const CustomCardType2(
@@ -120,7 +120,7 @@ class CardScreen extends StatelessWidget {
                             builder: (BuildContext context) => const Template(
                                   title: 'Meses',
                                   imageAsset: 'assets/home_img/meses.png',
-                                  language: 'american',
+                                  language: 'ecuadorian',
                                 )));
                   },
                   child: const CustomCardType2(
@@ -137,7 +137,7 @@ class CardScreen extends StatelessWidget {
                             builder: (BuildContext context) => const Template(
                                   title: 'Saludos',
                                   imageAsset: 'assets/home_img/saludos.png',
-                                  language: 'american',
+                                  language: 'ecuadorian',
                                 )));
                   },
                   child: const CustomCardType2(
@@ -154,7 +154,7 @@ class CardScreen extends StatelessWidget {
                             builder: (BuildContext context) => const Template(
                                   title: 'Colores',
                                   imageAsset: 'assets/home_img/colores.png',
-                                  language: 'american',
+                                  language: 'ecuadorian',
                                 )));
                   },
                   child: const CustomCardType2(

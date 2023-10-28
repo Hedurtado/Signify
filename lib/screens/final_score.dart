@@ -8,7 +8,6 @@ class FinalScore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
     double scaleFactor =
         screenWidth / 375.0; // Valor de referencia para el diseño 375, 445
@@ -180,7 +179,8 @@ class FinalScore extends StatelessWidget {
                         width: 40 * scaleFactor), // Espacio entre los botones
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, 'abecedario');
+                        //TODO: Agregar que al darle continuar se vaya a la seccion y no a la homepage
+                        Navigator.pushNamed(context, 'home_test');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(
