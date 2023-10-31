@@ -3,10 +3,26 @@ import 'package:google_fonts/google_fonts.dart';
 import 'welcome_test.dart';
 
 class FinalScore extends StatelessWidget {
-  const FinalScore({super.key});
+  final String title;
+  final int correctAnswers;
+  final int wrongAnswers;
+  const FinalScore({
+    required this.title,
+    required this.correctAnswers,
+    required this.wrongAnswers,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    late String message;
+    if (correctAnswers == 0) {
+      message = 'No has acertado ninguna palabra.\n¡Intenta de nuevo!';
+    } else if (correctAnswers <= 4 && correctAnswers >= 1) {
+      message = '¡Buen trabajo, pero lo puedes hacer mejor! ';
+    } else if (correctAnswers >= 5) {
+      message = '¡Excelente trabajo!\n ¡Sigue asi!';
+    }
     double screenWidth = MediaQuery.of(context).size.width;
 
     double scaleFactor =
@@ -56,7 +72,7 @@ class FinalScore extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Excelente!!!!! Sigue Asi',
+                      message,
                       style: GoogleFonts.poppins(
                         fontSize: 25 * scaleFactor, // Tamaño de fuente escalado
                         color: const Color(0xFF273958),
@@ -94,7 +110,7 @@ class FinalScore extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '3',
+                            correctAnswers.toString(),
                             style: GoogleFonts.poppins(
                               fontSize:
                                   20 * scaleFactor, // Tamaño de fuente escalado
@@ -134,7 +150,7 @@ class FinalScore extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '1',
+                            wrongAnswers.toString(),
                             style: GoogleFonts.poppins(
                               fontSize:
                                   20 * scaleFactor, // Tamaño de fuente escalado
@@ -157,7 +173,7 @@ class FinalScore extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const WelcomeTest()),
+                              builder: (context) => WelcomeTest(title: title)),
                         );
                       },
                       style: ElevatedButton.styleFrom(

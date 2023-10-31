@@ -131,7 +131,7 @@ class Template extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      VideoPlayerTemplate(name: name)));
+                      VideoPlayerTemplate(name: name, language: language)));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green,
@@ -153,6 +153,17 @@ class Template extends StatelessWidget {
   }
 
   Widget buildTestButton(BuildContext context) {
+    String name;
+    if (language == "ecuadorian" || language == "none") {
+      name = title;
+      name = '${name.toLowerCase()}_lsec';
+    } else {
+      if (title == 'Abecedario') {
+        name = 'Videos';
+      } else {
+        name = title;
+      }
+    }
     return Container(
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.05,
@@ -170,7 +181,11 @@ class Template extends StatelessWidget {
       ),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, 'welcometest');
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => WelcomeTest(title: name),
+              ));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green,

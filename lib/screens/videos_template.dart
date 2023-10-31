@@ -6,7 +6,9 @@ import 'package:video_player/video_player.dart';
 
 class VideoPlayerTemplate extends StatefulWidget {
   final String name;
+  final String language;
   const VideoPlayerTemplate({
+    required this.language,
     required this.name,
     Key? key,
   }) : super(key: key);
@@ -136,7 +138,7 @@ class _VideosState extends State<VideoPlayerTemplate> {
     if (widget.name == "Videos") {
       title = 'Abecedario';
     } else {
-      title = widget.name.substring(0, widget.name.indexOf('_'));
+      title = widget.name;
     }
     return Container(
       margin: EdgeInsets.only(
@@ -169,7 +171,7 @@ class _VideosState extends State<VideoPlayerTemplate> {
                   return Template(
                     title: title,
                     imageAsset: 'assets/home_img/${title.toLowerCase()}.png',
-                    language: 'none',
+                    language: widget.language,
                   );
                 })));
                 _controller.pause();

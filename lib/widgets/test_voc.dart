@@ -1,222 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dots_indicator/dots_indicator.dart';
+import 'package:section/screens/final_score.dart';
 import 'package:video_player/video_player.dart';
 
 class Voc1 extends StatefulWidget {
   final BuildContext context;
-  final String image;
+  final Widget image;
   final String meaning;
   final String title;
   final String description;
   final int index;
-  const Voc1(
-      {required this.context,
-      required this.image,
-      required this.meaning,
-      required this.title,
-      required this.description,
-      required this.index,
-      super.key});
+  final VideoPlayerController videoController;
+  final Function onChange;
+  final List<String> sign;
+  final int cIndex;
+
+  const Voc1({
+    super.key,
+    required this.context,
+    required this.image,
+    required this.meaning,
+    required this.title,
+    required this.description,
+    required this.index,
+    required this.videoController,
+    required this.onChange,
+    required this.sign,
+    required this.cIndex,
+  });
 
   @override
-  // ignore: library_private_types_in_public_api
-  _VideosStateTest createState() => _VideosStateTest();
+  State<Voc1> createState() => _Voc1State();
 }
 
-class _VideosStateTest extends State<Voc1> {
-  int currentIndex = 0;
-  int otherIndex = 0;
-  late VideoPlayerController _controller;
-  late Future<void>
-      // ignore: unused_field
-      _controllerInitializer; // Variable para la inicialización del controlador
-  List<Map<String, String>> videos = [];
+class _Voc1State extends State<Voc1> {
+  static int correctAnswers = 0;
+  static int wrongAnswers = 0;
 
-  @override
-  void initState() {
-    super.initState();
-
-    // Iniciar la inicialización del controlador en el initState
-    _getVideosFromFirestore();
-  }
-
-  Future<void> _getVideosFromFirestore() async {
-    CollectionReference collection =
-        FirebaseFirestore.instance.collection('Videos');
-    QuerySnapshot querySnapshot = await collection.get();
-
-    List<Map<String, String>> fetchvideos = [];
-
-    for (var doc in querySnapshot.docs) {
-      Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-      String title = data['title'];
-      String url = data['url'];
-      fetchvideos.add({
-        'title': title,
-        'url': url,
-        'videoId': doc.id
-      }); // Usar doc.id como identificador
-    }
-
+  void incrementCorrectAnswers() {
     setState(() {
-      videos = fetchvideos;
-      videos.sort(((a, b) => a['title']!.compareTo(b['title']!)));
-    });
-
-    _initializeController();
-  }
-
-  Future<void> _initializeController() async {
-    String? videoUrl = videos[currentIndex]['url'];
-
-    if (videoUrl != null) {
-      _controller = VideoPlayerController.networkUrl(Uri.parse(videoUrl));
-
-      await _controller.initialize();
-      await _controller.setLooping(true);
-      await _controller.play();
-    }
-  }
-
-  void moveToNext() {
-    setState(() {
-      if (currentIndex < videos.length - 1) {
-        currentIndex = currentIndex + 1;
-        otherIndex = currentIndex;
-        _controller.dispose();
-        _controller = VideoPlayerController.networkUrl(
-            Uri.parse(videos[currentIndex]['url']!));
-        _controller.initialize().then((_) {
-          _controller.play();
-        });
-      }
+      correctAnswers += 1;
     });
   }
 
-  void moveToPrev() {
+  void incrementWrongAnswers() {
     setState(() {
-      if (currentIndex > 0) {
-        currentIndex = currentIndex - 1;
-        otherIndex = currentIndex;
-        _controller.dispose();
-        _controller = VideoPlayerController.networkUrl(
-            Uri.parse(videos[currentIndex]['url']!));
-        _controller.initialize().then((_) {
-          _controller.play();
-        });
-      } else if (currentIndex == 0) {
-        currentIndex = videos.length - 1;
-        otherIndex = currentIndex;
-        _controller.dispose();
-        _controller = VideoPlayerController.networkUrl(
-            Uri.parse(videos[currentIndex]['url']!));
-        _controller.initialize().then((_) {
-          _controller.play();
-        });
-      }
+      wrongAnswers += 1;
     });
   }
 
-  Widget buildButtonOptions(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.05,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            margin: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.1,
-            ),
-            child: InkWell(
-              onTap: moveToPrev,
-              child: Image.asset(
-                'assets/double_left.png',
-                width: 50,
-                height: 50,
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(
-              right: MediaQuery.of(context).size.width * 0.1,
-              left: MediaQuery.of(context).size.width * 0.1,
-            ),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, 'abecedario');
-                _controller.pause();
-              },
-              child: Image.asset(
-                'assets/home.png',
-                width: 50,
-                height: 50,
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(
-              right: MediaQuery.of(context).size.width * 0.1,
-            ),
-            child: InkWell(
-              onTap: moveToNext,
-              child: Image.asset(
-                'assets/double_right.png',
-                width: 50,
-                height: 50,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildVideo(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.01,
-        bottom: MediaQuery.of(context).size.height * 0.03,
-      ),
-      width: MediaQuery.of(context).size.width * 0.7,
-      height: MediaQuery.of(context).size.height * 0.5,
-      child: AspectRatio(
-        aspectRatio: _controller.value.aspectRatio,
-        child: VideoPlayer(_controller),
-      ),
-    );
-  }
-
-  Widget buildTitulo(BuildContext context) {
-    final videoName = videos[currentIndex]['title'];
-    return Container(
-      margin: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.01,
-        bottom: MediaQuery.of(context).size.height * 0.02,
-      ),
-      child: Text(
-        "Esta seña representa la letra \n$videoName",
-        style: const TextStyle(
-          fontSize: 26,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'istokWeb',
-        ),
-      ),
-    );
+  void resetAnswers() {
+    setState(() {
+      correctAnswers = 0;
+      wrongAnswers = 0;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (videos.isEmpty) {
-      return Container(
-          color: Colors.white,
-          child: const Center(
-            child: CircularProgressIndicator(color: Colors.purple),
-          ));
-    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -227,7 +68,7 @@ class _VideosStateTest extends State<Voc1> {
             child: Container(
               child: Flexible(
                 child: Text(
-                  widget.title,
+                  widget.meaning,
                   textAlign: TextAlign.center,
                   softWrap: true,
                   style: GoogleFonts.poppins(
@@ -243,14 +84,16 @@ class _VideosStateTest extends State<Voc1> {
         const SizedBox(height: 10),
         Container(
           height: MediaQuery.of(context).size.height * 0.57,
+          width: MediaQuery.of(context).size.width * 0.8,
           child: Column(
             children: [
               Expanded(
                 flex: 7,
                 child: Center(
                   child: Container(
-                      alignment: Alignment.center,
-                      child: buildVideo(widget.context)),
+                    alignment: Alignment.center,
+                    child: VideoPlayer(widget.videoController),
+                  ),
                 ),
               ),
             ],
@@ -266,8 +109,24 @@ class _VideosStateTest extends State<Voc1> {
             children: [
               ElevatedButton(
                 onPressed: () {
+                  if (widget.sign[widget.cIndex] == widget.sign[0]) {
+                    incrementCorrectAnswers();
+                    widget.onChange();
+                  } else {
+                    incrementWrongAnswers();
+                    widget.onChange();
+                  }
                   if (widget.index == 5) {
-                    Navigator.pushNamed(context, 'finalscore');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FinalScore(
+                                title: widget.title,
+                                correctAnswers: correctAnswers,
+                                wrongAnswers: wrongAnswers)));
+                    Future.delayed(const Duration(seconds: 1), () {
+                      resetAnswers();
+                    });
                   }
                 },
                 style: ButtonStyle(
@@ -276,49 +135,109 @@ class _VideosStateTest extends State<Voc1> {
                   ),
                 ),
                 child: Text(
-                  'A',
+                  widget.sign[0],
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                   ),
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.sign[widget.cIndex] == widget.sign[1]) {
+                    incrementCorrectAnswers();
+                    widget.onChange();
+                  } else {
+                    incrementWrongAnswers();
+                    widget.onChange();
+                  }
+                  if (widget.index == 5) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FinalScore(
+                                title: widget.title,
+                                correctAnswers: correctAnswers,
+                                wrongAnswers: wrongAnswers)));
+                    Future.delayed(const Duration(seconds: 1), () {
+                      resetAnswers();
+                    });
+                  }
+                },
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                     const EdgeInsets.all(5.0),
                   ),
                 ),
                 child: Text(
-                  'B',
+                  widget.sign[1],
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                   ),
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.sign[widget.cIndex] == widget.sign[2]) {
+                    incrementCorrectAnswers();
+                    widget.onChange();
+                  } else {
+                    incrementWrongAnswers();
+                    widget.onChange();
+                  }
+                  if (widget.index == 5) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FinalScore(
+                                title: widget.title,
+                                correctAnswers: correctAnswers,
+                                wrongAnswers: wrongAnswers)));
+                    Future.delayed(const Duration(seconds: 1), () {
+                      resetAnswers();
+                    });
+                  }
+                },
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                     const EdgeInsets.all(5.0),
                   ),
                 ),
                 child: Text(
-                  'C',
+                  widget.sign[2],
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                   ),
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.sign[widget.cIndex] == widget.sign[3]) {
+                    incrementCorrectAnswers();
+                    widget.onChange();
+                  } else {
+                    incrementWrongAnswers();
+                    widget.onChange();
+                  }
+                  if (widget.index == 5) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FinalScore(
+                                title: widget.title,
+                                correctAnswers: correctAnswers,
+                                wrongAnswers: wrongAnswers)));
+                    Future.delayed(const Duration(seconds: 1), () {
+                      resetAnswers();
+                    });
+                  }
+                },
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                     const EdgeInsets.all(5.0),
                   ),
                 ),
                 child: Text(
-                  'D',
+                  widget.sign[3],
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                   ),

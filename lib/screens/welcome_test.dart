@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:section/screens/screens.dart';
 
 class WelcomeTest extends StatelessWidget {
-  const WelcomeTest({super.key});
+  final String title;
+  const WelcomeTest({
+    required this.title,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +100,12 @@ class WelcomeTest extends StatelessWidget {
 
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, 'test');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TestVoc(
+                                  title: title,
+                                )));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFA3A42B),
