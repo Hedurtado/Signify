@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:section/screens/final_score.dart';
+import 'package:video_player/video_player.dart';
 
 class Voc1 extends StatefulWidget {
   final BuildContext context;
-  final String image;
+  final Widget image;
   final String meaning;
   final String title;
   final String description;
   final int index;
+  final VideoPlayerController videoController;
+  final Function onChange;
+  final List<String> sign;
+  final int cIndex;
 
   const Voc1({
     super.key,
@@ -17,12 +23,39 @@ class Voc1 extends StatefulWidget {
     required this.title,
     required this.description,
     required this.index,
+    required this.videoController,
+    required this.onChange,
+    required this.sign,
+    required this.cIndex,
   });
+
   @override
   State<Voc1> createState() => _Voc1State();
 }
 
 class _Voc1State extends State<Voc1> {
+  static int correctAnswers = 0;
+  static int wrongAnswers = 0;
+
+  void incrementCorrectAnswers() {
+    setState(() {
+      correctAnswers += 1;
+    });
+  }
+
+  void incrementWrongAnswers() {
+    setState(() {
+      wrongAnswers += 1;
+    });
+  }
+
+  void resetAnswers() {
+    setState(() {
+      correctAnswers = 0;
+      wrongAnswers = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,7 +68,7 @@ class _Voc1State extends State<Voc1> {
             child: Container(
               child: Flexible(
                 child: Text(
-                  widget.title,
+                  widget.meaning,
                   textAlign: TextAlign.center,
                   softWrap: true,
                   style: GoogleFonts.poppins(
@@ -51,6 +84,7 @@ class _Voc1State extends State<Voc1> {
         const SizedBox(height: 10),
         Container(
           height: MediaQuery.of(context).size.height * 0.57,
+          width: MediaQuery.of(context).size.width * 0.8,
           child: Column(
             children: [
               Expanded(
@@ -58,11 +92,7 @@ class _Voc1State extends State<Voc1> {
                 child: Center(
                   child: Container(
                     alignment: Alignment.center,
-                    child: Image.asset(
-                      widget.image,
-                      fit: BoxFit.contain,
-                      height: double.infinity,
-                    ),
+                    child: VideoPlayer(widget.videoController),
                   ),
                 ),
               ),
@@ -79,8 +109,24 @@ class _Voc1State extends State<Voc1> {
             children: [
               ElevatedButton(
                 onPressed: () {
+                  if (widget.sign[widget.cIndex] == widget.sign[0]) {
+                    incrementCorrectAnswers();
+                    widget.onChange();
+                  } else {
+                    incrementWrongAnswers();
+                    widget.onChange();
+                  }
                   if (widget.index == 5) {
-                    Navigator.pushNamed(context, 'finalscore');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FinalScore(
+                                title: widget.title,
+                                correctAnswers: correctAnswers,
+                                wrongAnswers: wrongAnswers)));
+                    Future.delayed(const Duration(seconds: 1), () {
+                      resetAnswers();
+                    });
                   }
                 },
                 style: ButtonStyle(
@@ -89,49 +135,109 @@ class _Voc1State extends State<Voc1> {
                   ),
                 ),
                 child: Text(
-                  'A',
+                  widget.sign[0],
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                   ),
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.sign[widget.cIndex] == widget.sign[1]) {
+                    incrementCorrectAnswers();
+                    widget.onChange();
+                  } else {
+                    incrementWrongAnswers();
+                    widget.onChange();
+                  }
+                  if (widget.index == 5) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FinalScore(
+                                title: widget.title,
+                                correctAnswers: correctAnswers,
+                                wrongAnswers: wrongAnswers)));
+                    Future.delayed(const Duration(seconds: 1), () {
+                      resetAnswers();
+                    });
+                  }
+                },
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                     const EdgeInsets.all(5.0),
                   ),
                 ),
                 child: Text(
-                  'B',
+                  widget.sign[1],
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                   ),
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.sign[widget.cIndex] == widget.sign[2]) {
+                    incrementCorrectAnswers();
+                    widget.onChange();
+                  } else {
+                    incrementWrongAnswers();
+                    widget.onChange();
+                  }
+                  if (widget.index == 5) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FinalScore(
+                                title: widget.title,
+                                correctAnswers: correctAnswers,
+                                wrongAnswers: wrongAnswers)));
+                    Future.delayed(const Duration(seconds: 1), () {
+                      resetAnswers();
+                    });
+                  }
+                },
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                     const EdgeInsets.all(5.0),
                   ),
                 ),
                 child: Text(
-                  'C',
+                  widget.sign[2],
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                   ),
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.sign[widget.cIndex] == widget.sign[3]) {
+                    incrementCorrectAnswers();
+                    widget.onChange();
+                  } else {
+                    incrementWrongAnswers();
+                    widget.onChange();
+                  }
+                  if (widget.index == 5) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FinalScore(
+                                title: widget.title,
+                                correctAnswers: correctAnswers,
+                                wrongAnswers: wrongAnswers)));
+                    Future.delayed(const Duration(seconds: 1), () {
+                      resetAnswers();
+                    });
+                  }
+                },
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                     const EdgeInsets.all(5.0),
                   ),
                 ),
                 child: Text(
-                  'D',
+                  widget.sign[3],
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                   ),
