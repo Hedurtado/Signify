@@ -6,7 +6,9 @@ import 'package:video_player/video_player.dart';
 
 class VideoPlayerTemplate extends StatefulWidget {
   final String name;
+  final String language;
   const VideoPlayerTemplate({
+    required this.language,
     required this.name,
     Key? key,
   }) : super(key: key);
@@ -167,8 +169,10 @@ class _VideosState extends State<VideoPlayerTemplate> {
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: ((context) {
                   return Template(
-                      title: title,
-                      imageAsset: 'assets/home_img/${title.toLowerCase()}.png');
+                    title: title,
+                    imageAsset: 'assets/home_img/${title.toLowerCase()}.png',
+                    language: widget.language,
+                  );
                 })));
                 _controller.pause();
                 _controller.dispose();
@@ -199,13 +203,22 @@ class _VideosState extends State<VideoPlayerTemplate> {
   }
 
   Widget buildVideo(BuildContext context) {
+    final double videoWidth;
+    final double videoHeight;
+    if (widget.name.contains('lsec')) {
+      videoWidth = MediaQuery.of(context).size.width * 0.9;
+      videoHeight = MediaQuery.of(context).size.height * 0.5;
+    } else {
+      videoWidth = MediaQuery.of(context).size.width * 0.7;
+      videoHeight = MediaQuery.of(context).size.height * 0.5;
+    }
     return Container(
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.01,
         bottom: MediaQuery.of(context).size.height * 0.03,
       ),
-      width: MediaQuery.of(context).size.width * 0.7,
-      height: MediaQuery.of(context).size.height * 0.5,
+      width: videoWidth,
+      height: videoHeight,
       child: AspectRatio(
         aspectRatio: _controller.value.aspectRatio,
         child: VideoPlayer(_controller),
