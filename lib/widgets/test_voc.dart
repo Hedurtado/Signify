@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:section/screens/final_score.dart';
 import 'package:video_player/video_player.dart';
+
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Voc1 extends StatefulWidget {
   final BuildContext context;
@@ -54,6 +57,41 @@ class _Voc1State extends State<Voc1> {
       correctAnswers = 0;
       wrongAnswers = 0;
     });
+  }
+
+  void showAnswerAlert(BuildContext context, bool isCorrect) {
+    String message =
+        isCorrect ? "¡Respuesta correcta!" : "Respuesta incorrecta :(";
+    IconData iconData = isCorrect ? Icons.check : Icons.close;
+
+    // Create a custom widget for the toast message with an icon
+    Widget toastWidget = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+      decoration: BoxDecoration(
+        color: isCorrect ? Colors.green : Colors.red,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(iconData, color: Colors.white),
+          const SizedBox(width: 8.0),
+          Text(
+            message,
+            style: const TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+
+    // Show the custom widget as a toast message
+    FToast fToast = FToast();
+    fToast.init(context);
+    fToast.showToast(
+      child: toastWidget,
+      gravity: ToastGravity.CENTER,
+      toastDuration: const Duration(milliseconds: 1000),
+    );
   }
 
   @override
@@ -111,20 +149,28 @@ class _Voc1State extends State<Voc1> {
                 onPressed: () {
                   if (widget.sign[widget.cIndex] == widget.sign[0]) {
                     incrementCorrectAnswers();
-                    widget.onChange();
+                    showAnswerAlert(context, true);
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      widget.onChange();
+                    });
                   } else {
                     incrementWrongAnswers();
-                    widget.onChange();
+                    showAnswerAlert(context, false);
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      widget.onChange();
+                    });
                   }
                   if (widget.index == 5) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FinalScore(
-                                title: widget.title,
-                                correctAnswers: correctAnswers,
-                                wrongAnswers: wrongAnswers)));
-                    Future.delayed(const Duration(seconds: 1), () {
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FinalScore(
+                                  title: widget.title,
+                                  correctAnswers: correctAnswers,
+                                  wrongAnswers: wrongAnswers)));
+                    });
+                    Future.delayed(const Duration(milliseconds: 2200), () {
                       resetAnswers();
                     });
                   }
@@ -145,20 +191,28 @@ class _Voc1State extends State<Voc1> {
                 onPressed: () {
                   if (widget.sign[widget.cIndex] == widget.sign[1]) {
                     incrementCorrectAnswers();
-                    widget.onChange();
+                    showAnswerAlert(context, true);
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      widget.onChange();
+                    });
                   } else {
                     incrementWrongAnswers();
-                    widget.onChange();
+                    showAnswerAlert(context, false);
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      widget.onChange();
+                    });
                   }
                   if (widget.index == 5) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FinalScore(
-                                title: widget.title,
-                                correctAnswers: correctAnswers,
-                                wrongAnswers: wrongAnswers)));
-                    Future.delayed(const Duration(seconds: 1), () {
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FinalScore(
+                                  title: widget.title,
+                                  correctAnswers: correctAnswers,
+                                  wrongAnswers: wrongAnswers)));
+                    });
+                    Future.delayed(const Duration(milliseconds: 2200), () {
                       resetAnswers();
                     });
                   }
@@ -179,20 +233,28 @@ class _Voc1State extends State<Voc1> {
                 onPressed: () {
                   if (widget.sign[widget.cIndex] == widget.sign[2]) {
                     incrementCorrectAnswers();
-                    widget.onChange();
+                    showAnswerAlert(context, true);
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      widget.onChange();
+                    });
                   } else {
                     incrementWrongAnswers();
-                    widget.onChange();
+                    showAnswerAlert(context, false);
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      widget.onChange();
+                    });
                   }
                   if (widget.index == 5) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FinalScore(
-                                title: widget.title,
-                                correctAnswers: correctAnswers,
-                                wrongAnswers: wrongAnswers)));
-                    Future.delayed(const Duration(seconds: 1), () {
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FinalScore(
+                                  title: widget.title,
+                                  correctAnswers: correctAnswers,
+                                  wrongAnswers: wrongAnswers)));
+                    });
+                    Future.delayed(const Duration(milliseconds: 2200), () {
                       resetAnswers();
                     });
                   }
@@ -213,20 +275,28 @@ class _Voc1State extends State<Voc1> {
                 onPressed: () {
                   if (widget.sign[widget.cIndex] == widget.sign[3]) {
                     incrementCorrectAnswers();
-                    widget.onChange();
+                    showAnswerAlert(context, true);
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      widget.onChange();
+                    });
                   } else {
                     incrementWrongAnswers();
-                    widget.onChange();
+                    showAnswerAlert(context, false);
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      widget.onChange();
+                    });
                   }
                   if (widget.index == 5) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FinalScore(
-                                title: widget.title,
-                                correctAnswers: correctAnswers,
-                                wrongAnswers: wrongAnswers)));
-                    Future.delayed(const Duration(seconds: 1), () {
+                    Future.delayed(const Duration(milliseconds: 1400), () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FinalScore(
+                                  title: widget.title,
+                                  correctAnswers: correctAnswers,
+                                  wrongAnswers: wrongAnswers)));
+                    });
+                    Future.delayed(const Duration(milliseconds: 2200), () {
                       resetAnswers();
                     });
                   }
