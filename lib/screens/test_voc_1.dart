@@ -126,7 +126,7 @@ class _TestVocState extends State<TestVoc> {
     List<String> randomVideoTitles = [
       currentTitle,
     ];
-
+    videos.removeWhere((video) => video['title'] == currentTitle);
     videos.shuffle();
 
     randomVideoTitles.addAll(videos
