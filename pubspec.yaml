@@ -51,6 +51,7 @@ dependencies:
   country_flags: ^2.1.0
   lottie: ^2.6.0
   google_sign_in: ^5.2.1
+  fluttertoast: ^8.2.2
 
 
 dev_dependencies:
