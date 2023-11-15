@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/screens/screens.dart';
 
 class AppRoutes {
-  static const initialRoute = 'welcomepage';
+  static const initialRoute = 'firstpage';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     'firstpage': (BuildContext context) => const HomePage(),
