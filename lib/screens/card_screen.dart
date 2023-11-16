@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:section/screens/screens.dart';
+import 'package:Signify/screens/screens.dart';
 import 'package:lottie/lottie.dart';
 import '/theme/app_theme.dart';
 
@@ -68,7 +68,7 @@ class CardScreen extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (BuildContext context) => const Template(
                                   title: 'Abecedario',
-                                  imageAsset: 'assets/images/Abecedario.png',
+                                  imageAsset: 'assets/home_img/abecedario.png',
                                   language: 'american',
                                 )));
                   },

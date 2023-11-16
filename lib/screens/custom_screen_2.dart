@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:section/widgets/widgets.dart';
+import 'package:Signify/widgets/widgets.dart';
 
 class CustomScreen2 extends StatelessWidget {
   const CustomScreen2({super.key});

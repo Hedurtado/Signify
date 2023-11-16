@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:section/widgets/widgets.dart';
+import 'package:Signify/widgets/widgets.dart';
 
 class CustomScreen3 extends StatefulWidget {
   const CustomScreen3({Key? key}) : super(key: key);

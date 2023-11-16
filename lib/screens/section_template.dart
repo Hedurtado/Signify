@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:section/screens/screens.dart';
+import 'package:Signify/screens/screens.dart';
 
 class Template extends StatelessWidget {
   final String title;

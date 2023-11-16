@@ -59,7 +59,7 @@ Widget buildText(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Estas a un ',
+                  '¡Estás a un ',
                   style: GoogleFonts.poppins(
                     fontSize: 30,
                     fontWeight: FontWeight.w400,
@@ -82,7 +82,7 @@ Widget buildText(BuildContext context) {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Text('sociedad mas',
+          Text('sociedad más',
               style: GoogleFonts.poppins(
                 fontSize: 30,
                 fontWeight: FontWeight.w400,
@@ -110,14 +110,14 @@ Widget buildCustomText(BuildContext context) {
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 fontSize: 20,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w300,
               )),
           Text(
             'tu experiencia',
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
               fontSize: 20,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w300,
             ),
           )
         ],

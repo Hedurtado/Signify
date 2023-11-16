@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:section/screens/screens.dart';
+import 'package:Signify/screens/screens.dart';
 import 'package:lottie/lottie.dart';
 import '/theme/app_theme.dart';
 

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:section/screens/screens.dart';
+import 'package:Signify/screens/screens.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerTemplate extends StatefulWidget {
